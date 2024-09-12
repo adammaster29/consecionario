@@ -1,0 +1,137 @@
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.carros{
+    /* border: 1px solid #000; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap:5px ;
+}
+.text-blue-800{
+   
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 8px 1px gray;
+    width: 250px;
+    height: 470px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+.cards:hover{
+    transform: scale(1.02);
+    
+}
+.descripcion-vehiculo{
+    background: #0a9c70ad;
+    font-weight: 400;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+    position: relative;
+}
+
+.sombraDescripcion{
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    justify-content: space-around;
+    align-items: self-end;
+    position: absolute;
+    width: 250px;
+    height: 470px;
+    opacity: 0;
+}
+.bx{
+font-size: 40px;
+border: 1px solid #000;
+border-radius: 50%;
+}
+.bx:hover{
+background: #0a9c70ad;
+color: #fff;
+}
+.bx-edit-alt{
+    color: green;
+    background: green;
+color: #fff;
+}
+.bx-x{
+    background: red;
+color: #fff;
+}
+.bx-cart-add{
+    background: blue;
+color: #fff;
+}
+
+
+
+.sombraDescripcion:hover{
+    z-index: 2;
+    position: absolute;
+    width: 250px;
+    height: 470px;
+    background: #ffffff;
+    opacity: 1;
+}
+
+img{
+    width: 100%;
+}
+
+.contenedorCarros{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.carros__menores{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* background: #0a9c70ad; */
+    box-shadow: 1px 2px 21px gray;
+}
+.img_vehiculos-variado{
+    filter: drop-shadow( 2px 12px 13px rgb(255, 255, 255));
+}
+.carrosInhover{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-weight: 600;
+    padding: 1rem;
+    font-size: 25px;
+}
+.contenedorIcon{
+    display: flex;
+    width: 100%;
+    justify-content: space-between; 
+    padding: 1rem;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
