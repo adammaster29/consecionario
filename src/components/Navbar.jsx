@@ -1,14 +1,14 @@
-import { Disclosure, Menu } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios"; // Importa axios para hacer peticiones HTTP
+import axios from "axios";
 
 const navigation = [
+  { name: "Inicio", href: "#", current: true },
   { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: true },
-  { name: "Carros", href: "#", current: true },
-  { name: "Motos", href: "#", current: true },
+  { name: "Contactos", href: "#contactos", current: true },
   { name: "Agregar +", action: "openModal", current: true }
 ];
 
@@ -23,27 +23,30 @@ export default function Navbar() {
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
 
-
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append('tipo', data.tipo);
-    formData.append('marca', data.marca);
-    formData.append('modelo', data.modelo);
-    formData.append('año', data.año);
-    formData.append('color', data.color);
-    formData.append('precio', data.precio);
-    formData.append('imagen', data.imagen[0]);
-  
+    formData.append("tipo", data.tipo);
+    formData.append("marca", data.marca);
+    formData.append("modelo", data.modelo);
+    formData.append("año", data.año);
+    formData.append("color", data.color);
+    formData.append("precio", data.precio);
+    formData.append("imagen", data.imagen[0]);
+
     try {
-      const response = await axios.post(' https://crud-apis-2024.onrender.com/vehiculos', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const response = await axios.post(
+        "https://crud-apis-2024.onrender.com/vehiculos",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
-      console.log('Vehículo agregado:', response.data);
+      );
+      console.log("Vehículo agregado:", response.data);
       closeModal(); // Cierra el modal solo si la solicitud fue exitosa
     } catch (error) {
-      console.log('Error al llamado de la API:', error);
+      console.log("Error al llamar a la API:", error);
     }
   };
 
@@ -64,7 +67,7 @@ export default function Navbar() {
                 >
                   <option value="">Seleccione un tipo</option>
                   <option value="Carro">Carro</option>
-                  <option value="Moto">Motos</option>
+                  <option value="Moto">Moto</option>
                 </select>
                 {errors.tipo && <span className="text-red-500 text-sm">Este campo es requerido</span>}
               </div>
@@ -159,47 +162,75 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      <Disclosure as="nav" className="bg-gray-900">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                <span className="sr-only">Abrir menú principal</span>
-                <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                <XMarkIcon className="hidden h-6 w-6" aria-hidden="true" />
-              </Disclosure.Button>
-            </div>
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex flex-shrink-0 items-center">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="Your Company"
-                />
-              </div>
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      onClick={item.action === "openModal" ? openModal : undefined}
-                      className={classNames(
-                        item.current
-                          ? "bg-blue-100 text-blue-800"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+      <Disclosure as="nav" className=" bg-cyan-600">
+        {({ open }) => (
+          <>
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+              <div className="relative flex h-16 items-center justify-between">
+                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                  {/* Botón para menú móvil */}
+                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="sr-only">Abrir menú principal</span>
+                    {open ? (
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
+                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                  <div className="flex flex-shrink-0 items-center">
+                    <img
+                      className="h-8 w-20 rounded-md"
+                      src="/img/Thynk Unlimited.gif"
+                      alt="Company"
+                    />
+                  </div>
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          onClick={item.action === "openModal" ? openModal : undefined}
+                          className={classNames(
+                            item.current
+                              ? "bg-blue-100 text-blue-800"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "rounded-md px-3 py-2 text-sm font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+            <Disclosure.Panel className="sm:hidden">
+              <div className="space-y-1 px-2 pt-2 pb-3">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={item.action === "openModal" ? openModal : undefined}
+                    className={classNames(
+                      item.current
+                        ? "bg-blue-100 text-blue-800"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "block rounded-md px-3 py-2 text-base font-medium"
+                    )}
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
       </Disclosure>
     </>
   );
