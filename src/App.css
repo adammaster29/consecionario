@@ -156,6 +156,7 @@ img{
 }
 .float-animation {
     animation: float 3s ease-in-out infinite;
+    width: 350px;
 }
 /* contenedor2 */
 .contenedor2{
@@ -260,4 +261,15 @@ h2{
     align-items: center;
     height: 200px;
     background: #e9e9e92e;
+}
+.padre_datails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: 1px solid #000;
+}
+.card-datils{
+    width: 80%;
+    height: 700px;
 }

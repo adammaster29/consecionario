@@ -47,7 +47,7 @@ function Home({ carros, eliminar }) {
                 </div>
                 <div className="contenedorIcon  ">
                   <i onClick={() => eliminar(carro.id)} className="bx bx-x"></i>
-                  <Link to={`/detalle/${carro.id}`}>Ver Detalle</Link>
+                  <Link className="text-green-500" to={`/detalle/${carro.id}`}>Ver Detalle</Link>
                 </div>
               </div>
             </div>
@@ -79,7 +79,9 @@ function Home({ carros, eliminar }) {
         </div>
         <div className="card_contenedor2 tarjetas-card2">
           {vehiculos.map(vehiculo => (
-            <div className="tarjeta">
+           
+
+           <div className="tarjeta">
                <img
                 src={` https://crud-apis-2024.onrender.com/${vehiculo?.imagen_url}`}
                 alt={vehiculo.tipo}
@@ -90,8 +92,10 @@ function Home({ carros, eliminar }) {
                   <p>Año: {vehiculo.año}</p>
                   <p>Color: {vehiculo.color}</p>
                   <p>Precio: {vehiculo.precio}</p>
+                  <Link className="text-green-500" to={`/detalle/${vehiculo.id}`}> Detalles  </Link>
                </div>
             </div>
+          
           ))
 
           }
@@ -121,6 +125,7 @@ function Home({ carros, eliminar }) {
                   <p>Año: {vehiculo.año}</p>
                   <p>Color: {vehiculo.color}</p>
                   <p>Precio: {vehiculo.precio}</p>
+                  <Link className="text-green-500"  to={`/detalle/${vehiculo.id}`}> Detalles  </Link>
                </div>
             </div>
           ))
@@ -132,8 +137,8 @@ function Home({ carros, eliminar }) {
 
       <div className="contenedorCardsSmall">
         {carros.map(carrosCardsSmall =>(
+              <Link to={`/detalle/${carrosCardsSmall.id}`}>
           <div key={carrosCardsSmall.id} className="cardSmall">
-            
           <div className="img_small">
              <img 
                 src={` https://crud-apis-2024.onrender.com/${carrosCardsSmall?.imagen_url}`}
@@ -143,6 +148,7 @@ function Home({ carros, eliminar }) {
           </div>
                   <p>{carrosCardsSmall.modelo}</p>
           </div>
+                </Link>
 
         ))}
       </div>
