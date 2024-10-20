@@ -42,6 +42,9 @@ function Home({ carros, eliminar }) {
   const condicionParaBorrar = () => {
     setCondicion(!condicion);
   };
+  const salirModalB = ()=>{
+    setCondicion(false);
+  }
 
   let carroShort = carros.slice(0, 6);
   return (
@@ -153,7 +156,13 @@ function Home({ carros, eliminar }) {
 </button>
 
       {/* fin btn agregar */}
-      {/* empieza modal */}
+
+ 
+{/* modal borrar */}
+
+
+      {/* empieza modal formulario */}
+
       {modal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-10">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
@@ -276,12 +285,13 @@ function Home({ carros, eliminar }) {
         <p class="second-text ">{carros.length}</p>
     </div>
     <div class="card blue">
-        <p class="tip">Hover Me</p>
-        <p class="second-text">Lorem Ipsum</p>
+        <p class="tip">Carros</p>
+        <p class="second-text">{ carros.length > 0 ? carros.filter(carro => carro.tipo === 'Carro').length : ''
+        }</p>
     </div>
     <div class="card green">
-        <p class="tip">Hover Me</p>
-        <p class="second-text">Lorem Ipsum</p>
+        <p class="tip">Motos</p>
+        <p class="second-text">{carros.length > 0 ? carros.filter(moto => moto.tipo === 'Motos').length : ''}</p>
     </div>
 </div>
       
@@ -314,8 +324,8 @@ function Home({ carros, eliminar }) {
                     <span>$</span> {carro.precio}
                   </div>
                   <i
-                    onClick={() => eliminar(carro.id)}
-                    className="bx bx-x cursor-not-allowed "
+                  onClick={condicionParaBorrar}
+                    className="bx bx-x  "   //codigo para cursor blok con tailwind  cursor-not-allowed
                     disabled
                   ></i>
                   <Link to={`/detalle/${carro.id}`}>
@@ -331,6 +341,45 @@ function Home({ carros, eliminar }) {
                       </svg>
                     </button>
                   </Link>
+                  {condicion && (
+
+<div className="modalBorrar">
+<div class="bg-gray-100 max-w-sm mx-auto rounded shadow-md">
+<div class="text-center p-6">
+<p class="text-lg font-bold mb-0">
+  Estas Seguro Que Quieres Borrar El Vehiculo?
+</p>
+<p class="text-sm mb-0">
+  Si Borras El Vehiculo De Esta Pagina Tambien Se Borrara De La Base De Datos, <span> Tenemos {carros.length} Vehiculos </span> 
+</p>
+</div>
+<div class="border-t border-gray-300 flex justify-center p-0">
+<div class="flex-1 text-center">
+  <button
+  onClick={salirModalB}
+    class="text-blue-600 hover:bg-white hover:rounded-bl-md w-full py-2"
+    type="button"
+  >
+    Regresar
+  </button>
+</div>
+<div class="border-l border-gray-300"></div>
+<div class="flex-1 text-center">
+  <button
+   onClick={() => eliminar(carro.id)}
+    class="text-red-600 font-bold hover:bg-white hover:rounded-br-md w-full py-2"
+    type="button"
+  >
+    Eliminar
+  </button>
+</div>
+</div>
+</div>
+
+</div>
+)
+
+}
                 </div>
               </div>
             </div>
