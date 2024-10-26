@@ -2,109 +2,173 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* medias query */
 
-@media screen and (max-width:768px) {
-    
-    .carros {
-        border: 1px solid #ca3a3a;
-        display: flex;
-        flex-wrap: nowrap;
-        overflow: auto;
-        width: 100%;      
-        gap: 2px;
-    }
-    .cards{
-        width: 120px;
-        height: 200px;
-    }
-    .sombraDescripcion{
-        display: flex;
-        justify-content: space-around;
-        align-items: self-end;
-        position: absolute;
-        width: 100px;
-        height: 200px;
-    }
-    
-
-.sombraDescripcion:hover{
-    z-index: 2;
-    position: absolute;
-    width: 120px;
-    height: 220px;
-    background: #ffffff;
-    opacity: 1;
-}
-.sombraDescripcion,.cards p{
-    font-size: 12px;
-}
-.bx-x{
-    font-size: 20px;
-   width: 20px;
-   height: 20px;
-}
-.verDetallesTexto{
-font-size: 14px;
-}
-.contenedorIcon{
-    border: 1px solid #000;
+@media screen and (max-width: 768px) {
+  .cards2 {
     display: flex;
-    justify-content: center;
-    gap: 8px;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    height: 10px;
-}
-/* contenedor2 */
-.contenedor2{
+    width: 100%;
+    height: 150px;
+    gap: 15px;
+    background: #ffffff;
+  }
+
+  .cards2 .card {
+    height: 80px;
+  }
+  .cards2 .card p.second-text {
+    font-size: 1em;
+  }
+
+  .verDetallesTexto {
+    font-size: 14px;
+  }
+  /* contenedor2 */
+  .contenedor2 {
     /* border: 1px solid #707070; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-background: #fff;
-}
-.ducati-contenedor2{
-    width: 50%;
-    border: 1px solid #000;
-}
-.card_contenedor2 p{
-    font-size: 12px;
-}
-.tarjetas-card2{
-    background: #12c00c;
-    /* width: 100%; */
-}
-.tarjeta{
-    width: 100px;
-}
-.contenedorCardsSmall {
     background: #fff;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    padding: 1rem;
-    gap: 2px;
-}
-
-
-.buy img{
-    width: 50px;
-}
-.inicioFooter {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #bae912;
   }
-  .cardSmall {
-    width: 160px;
-    height: 60px;
+
+  .contenedorTarjetas {
+    width: 100%;
+  }
+  /* tarjeta */
+  .tarjeta {
+    width: 170px;
+  }
+
+  .img-tarjeta {
+    width: 110px;
+  }
+  .tarjeta p {
+    font-size: 13px;
+  }
+  .tarjeta h2 {
+    font-size: 16px;
+  }
+  .btn-tarjetas-detalles-borrar {
+    width: 100%;
+    font-size: 14px;
+  }
+  .contenedorBtnAddCrud button {
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+  }
+
+  .contenedor-linkDetalle {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 130px;
+    height: 80px;
+  }
+
+  .titulo-navegacion {
+    font-size: 25px;
+  }
 }
-.img_small{
-    width: 60px;
-    /* height: 100%; */
-    background: rgb(213, 212, 212);
+
+/* mediaquerry 650px */
+@media screen and (max-width: 650px) {
+  .img-tarjeta {
+    width: 90px;
+  }
+
+  .tarjeta p {
+    font-size: 12px;
+  }
+  .tarjeta h2 {
+    font-size: 14px;
+  }
+  .tarjeta button {
+    width: 100%;
+    height: 25px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenedor-btnBorrarYdetalle {
+    height: 150px;
+  }
+
+  .cards2 .card {
+    height: 70px;
+  }
+  .cards2 .card p.second-text {
+    font-size: 1em;
+  }
+  .card-datils {
+    height: 600px;
 }
+}
+
+/* mediaquerry 480px */
+
+@media screen and (max-width: 480px) {
+  .contenedorTarjetas {
+    flex-wrap: wrap;
+  }
+  .img-tarjeta {
+    width: 150px;
+  }
+  .tarjeta {
+    width: 250px;
+  }
+  .tarjeta p {
+    font-size: 16px;
+  }
+  .tarjeta h2 {
+    font-size: 20px;
+  }
+  .tarjeta button {
+    font-size: 16px;
+  }
+
+  .cards2 {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cards2 .card {
+    height: 55px;
+  }
+  .cards2 .card p.second-text {
+    font-size: 1.2em;
+  }
+  .cards2 .card p.tip {
+    font-size: 1em;
+    font-weight: 800;
+  }
+  .contenedorBtnAddCrud {
+    flex-direction: column;
+    position: absolute;
+    z-index: 5;
+    margin-right: 50%;
+    border-radius: 0 0 50%;
+    height: 30%;
+    background: #00000088;
+    width: 80%;
+  }
+  .card-datils {
+    width: 100%;
+    height: 550px;
+}
+}
+
+
+@media screen and (max-width: 350px) {
+  .card-datils {
+    height: 500px;
+}
+  
 }
